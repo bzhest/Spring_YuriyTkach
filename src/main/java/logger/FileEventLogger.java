@@ -1,6 +1,6 @@
-package lesson5.logger;
+package logger;
 
-import lesson5.beans.Event;
+import beans.Event;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

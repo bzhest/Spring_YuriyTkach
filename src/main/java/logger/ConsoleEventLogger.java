@@ -1,10 +1,10 @@
-package lesson5.logger;
+package logger;
 
-import lesson5.beans.Event;
+import beans.Event;
 
 public class ConsoleEventLogger implements EventLogger {
 
     public void logEvent(Event event){
-        System.out.println(event.toString());;
+        System.out.println(event.toString());
     }
 }

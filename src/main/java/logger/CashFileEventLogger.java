@@ -1,6 +1,6 @@
-package lesson5.logger;
+package logger;
 
-import lesson5.beans.Event;
+import beans.Event;
 
 import java.util.ArrayList;
 import java.util.List;

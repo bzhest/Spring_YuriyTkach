@@ -1,12 +1,7 @@
-package lesson5;
-
-import lesson5.beans.Client;
-import lesson5.beans.Event;
-import lesson5.logger.EventLogger;
-import org.springframework.context.ApplicationContext;
+import beans.*;
+import logger.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import sun.plugin2.message.EventMessage;
 
 public class App {
     private Client client;
@@ -17,7 +12,7 @@ public class App {
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
 
-        Event event = ctx.getBean(Event.class);
+        Event event = (Event) ctx.getBean("event");
         app.logEvent(event, "Some event for 1");
 
         event = ctx.getBean(Event.class);
