@@ -1,6 +1,6 @@
-package lesson4.logger;
+package logger;
 
-import lesson4.beans.Event;
+import beans.Event;
 
 public class ConsoleEventLogger implements EventLogger {
 

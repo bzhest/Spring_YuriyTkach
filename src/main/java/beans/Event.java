@@ -1,9 +1,12 @@
-package lesson4.beans;
+package beans;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Event {
+
+    private static final AtomicInteger AUTI_ID = new AtomicInteger(0);
     private int id;
     private String message;
     private Date date;
@@ -14,9 +17,15 @@ public class Event {
         return "Event{" +
                 "id=" + id +
                 ", message='" + message + '\'' +
-                ", date=" + date +
+                ", date=" + df.format(date) +
                 ", df=" + df +
                 '}';
+    }
+
+    public Event(Date date, DateFormat df) {
+        this.id = AUTI_ID.getAndIncrement();
+        this.date = date;
+        this.df = df;
     }
 
     public int getId() {
@@ -43,8 +52,4 @@ public class Event {
         this.date = date;
     }
 
-    public Event(Date date, DateFormat df) {
-        this.date = date;
-        this.df = df;
-    }
 }

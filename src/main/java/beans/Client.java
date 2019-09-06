@@ -1,4 +1,4 @@
-package lesson4.beans;
+package beans;
 
 public class Client {
 

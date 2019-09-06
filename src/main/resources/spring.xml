@@ -5,19 +5,19 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="client" class="lesson5.beans.Client">
+    <bean id="client" class="beans.Client">
         <constructor-arg index="0" value="1" />
         <constructor-arg value="John Smith" />
     </bean>
 
-    <bean id="eventLogger" class="lesson5.logger.ConsoleEventLogger" />
+    <bean id="eventLogger" class="logger.ConsoleEventLogger" />
 
-    <bean id="app" class="lesson5.App">
+    <bean id="app" class="App">
         <constructor-arg ref="client" />
         <constructor-arg ref="eventLogger" />
     </bean>
 
-    <bean id="event" class="lesson5.beans.Event" scope="prototype">
+    <bean id="event" class="beans.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>

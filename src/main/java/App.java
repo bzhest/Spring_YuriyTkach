@@ -1,8 +1,6 @@
-package lesson4;
 
-import lesson4.beans.Client;
-import lesson4.beans.Event;
-import lesson4.logger.EventLogger;
+import beans.*;
+import logger.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,7 +12,7 @@ public class App {
     public static void main(String[] args) {
         @SuppressWarnings("resource") // We will remove this suppress in further lessons
                 ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        App app = (App) ctx.getBean("app");
+        App app = ctx.getBean(App.class);
 
         Event event = ctx.getBean(Event.class);
         app.logEvent(event, "Some event for 1");
