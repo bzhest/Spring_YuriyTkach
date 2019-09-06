@@ -32,7 +32,7 @@
         <constructor-arg value="target/event_log.txt"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="com.yet.spring.core.loggers.CacheFileEventLogger"
+    <bean id="cacheFileEventLogger" class="logger.CashFileEventLogger"
           destroy-method="destroy">
         <constructor-arg value="target/events_log.txt"/>
         <constructor-arg value="5"/>

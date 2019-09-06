@@ -2,7 +2,18 @@ import beans.*;
 import logger.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+/*Specific logger is specified in spring.xml in:
+<bean id="app" class="App">
+<constructor-arg ref="client" />
+<constructor-arg ref="eventLogger" />
+</bean>
+to change on FileEventLogger we can use:
+<bean id="app" class="App">
+<constructor-arg ref="client" />
+<constructor-arg ref="fileEventLogger" />
+</bean>
 
+*/
 public class App {
     private Client client;
 
