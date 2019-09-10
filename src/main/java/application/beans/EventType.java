@@ -1,4 +1,4 @@
-package beans;
+package application.beans;
 
 public enum EventType {
     INFO,
