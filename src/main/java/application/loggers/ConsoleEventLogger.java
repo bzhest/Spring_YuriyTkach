@@ -1,6 +1,5 @@
 package application.loggers;
 
-import application.EventLogger;
 import application.beans.Event;
 import org.springframework.stereotype.Component;
 

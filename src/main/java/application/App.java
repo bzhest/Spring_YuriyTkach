@@ -1,13 +1,14 @@
-import beans.*;
-import logger.*;
+package application;
+
+import application.beans.Client;
+import application.beans.Event;
+import application.beans.EventType;
+import application.loggers.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
-import spring.AppConfig;
-import spring.LoggerConfig;
+import application.spring.AppConfig;
+import application.spring.LoggerConfig;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -27,8 +28,8 @@ public class App {
     public App() {
     }
 
-    App(Client client, EventLogger defaultLogger,
-        Map<EventType, EventLogger> loggersMap) {
+    public App(Client client, EventLogger defaultLogger,
+               Map<EventType, EventLogger> loggersMap) {
         this.client = client;
         this.defaultLogger = defaultLogger;
         this.loggers = loggersMap;
@@ -37,7 +38,7 @@ public class App {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class, LoggerConfig.class);
-        //ctx.scan("com.yet.spring.core");C:\Epam\spring_projest_Yurii\src\main\java\beans
+        ctx.scan("application");
         ctx.refresh();
 
         App app = (App) ctx.getBean("app");

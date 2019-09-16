@@ -1,4 +1,7 @@
-import com.yet.spring.core.beans.Event;
+package loggers;
+
+import application.beans.Event;
+import application.loggers.FileEventLogger;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;

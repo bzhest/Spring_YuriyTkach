@@ -1,14 +1,13 @@
 package application.loggers;
 
 import application.beans.Event;
-import application.EventLogger;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collection;
 
 @Component
-public class CombinedEventLogger implements application.loggers.EventLogger {
+public class CombinedEventLogger implements EventLogger {
 
     @Resource(name = "combinedLoggers")
     private Collection<EventLogger> loggers;

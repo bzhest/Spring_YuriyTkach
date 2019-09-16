@@ -1,6 +1,5 @@
 package application.loggers;
 
-import application.Event;
 import application.beans.Event;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CacheFileEventLogger extends application.loggers.FileEventLogger {
+public class CacheFileEventLogger extends FileEventLogger {
 
     // Use system property cache.size or 5 if property is not set
     @Value("${cache.size:5}")

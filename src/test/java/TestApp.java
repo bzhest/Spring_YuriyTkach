@@ -1,9 +1,10 @@
-package com.yet.spring.core;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import application.App;
+import application.beans.Client;
+import application.beans.Event;
+import application.beans.EventType;
+import application.loggers.EventLogger;
+import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,12 +13,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.junit.Test;
-
-import com.yet.spring.core.beans.Client;
-import com.yet.spring.core.beans.Event;
-import com.yet.spring.core.beans.EventType;
-import com.yet.spring.core.loggers.EventLogger;
+import static org.junit.Assert.*;
 
 public class TestApp {
 

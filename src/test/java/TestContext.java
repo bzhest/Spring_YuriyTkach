@@ -1,22 +1,20 @@
-package com.yet.spring.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import application.beans.Client;
+import application.beans.Event;
+import application.loggers.EventLogger;
+import application.loggers.FileEventLogger;
+import application.spring.AppConfig;
+import application.spring.LoggerConfig;
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.yet.spring.core.beans.Client;
-import com.yet.spring.core.beans.Event;
-import com.yet.spring.core.loggers.EventLogger;
-import com.yet.spring.core.loggers.FileEventLogger;
-import com.yet.spring.core.spring.AppConfig;
-import com.yet.spring.core.spring.LoggerConfig;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestContext {
 
