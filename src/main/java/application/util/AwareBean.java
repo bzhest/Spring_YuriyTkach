@@ -50,8 +50,7 @@ public class AwareBean implements ApplicationContextAware, BeanNameAware,
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext context)
-            throws BeansException {
+    public void setApplicationContext(ApplicationContext context) throws BeansException {
         this.ctx = context;
     }
 

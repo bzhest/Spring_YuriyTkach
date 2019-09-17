@@ -1,4 +1,4 @@
-package loggers;
+package core.loggers;
 
 import application.beans.Event;
 import application.loggers.FileEventLogger;
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class TestFileEventLogger {
-
+	
     private File file;
 
     @Before
     public void createFile() throws IOException {
         this.file = File.createTempFile("test", "FileEventLogger");
     }
-
+    
     @After
     public void removeFile() {
         file.delete();
@@ -34,8 +34,8 @@ public class TestFileEventLogger {
         FileEventLogger logger = new FileEventLogger(file.getAbsolutePath());
         logger.init();
     }
-
-    @Test(expected = IllegalArgumentException.class)
+    
+    @Test(expected=IllegalArgumentException.class)
     public void testInitFail() throws IOException {
         file.setReadOnly();
         FileEventLogger logger = new FileEventLogger(file.getAbsolutePath());
@@ -47,12 +47,12 @@ public class TestFileEventLogger {
         Event event = new Event(new Date(), DateFormat.getDateInstance());
         FileEventLogger logger = new FileEventLogger(file.getAbsolutePath());
         logger.init();
-
+        
         String contents = FileUtils.readFileToString(this.file);
         assertTrue(contents.isEmpty());
-
+        
         logger.logEvent(event);
-
+        
         contents = FileUtils.readFileToString(this.file);
         assertFalse(contents.isEmpty());
     }

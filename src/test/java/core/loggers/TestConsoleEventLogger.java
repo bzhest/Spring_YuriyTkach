@@ -1,5 +1,4 @@
-package loggers;
-
+package core.loggers;
 
 import application.beans.Event;
 import application.loggers.ConsoleEventLogger;
@@ -14,12 +13,12 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class TestConsoleEventLogger {
-
+	
     private static final String MSG = "Message";
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
+    
     private PrintStream stdout;
-
+    
     @Before
     public void setUpStreams() {
         stdout = System.out;
@@ -37,13 +36,12 @@ public class TestConsoleEventLogger {
         Date date = new Date();
         Event event = new Event(date, DateFormat.getDateTimeInstance());
         event.setMsg(MSG);
-
+        
         logger.logEvent(event);
-
+        
         Assert.assertTrue(outContent.toString().contains(MSG));
 
-        Assert.assertEquals(event.toString().trim(),
-                outContent.toString().trim());
+        Assert.assertEquals(event.toString().trim(), outContent.toString().trim());
     }
 
 }

@@ -5,43 +5,30 @@ import application.beans.Event;
 import application.beans.EventType;
 import application.loggers.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
-import application.spring.AppConfig;
-import application.spring.LoggerConfig;
+
 
 import javax.annotation.Resource;
 import java.util.Map;
 
-@Service
 public class App {
 
-    @Autowired
     private Client client;
 
-    @Resource(name = "defaultLogger")
     private EventLogger defaultLogger;
 
-    @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
 
-    public App() {
-    }
-
-    public App(Client client, EventLogger defaultLogger,
-               Map<EventType, EventLogger> loggersMap) {
-        this.client = client;
-        this.defaultLogger = defaultLogger;
-        this.loggers = loggersMap;
-    }
+    private String startupMessage;
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.register(AppConfig.class, LoggerConfig.class);
-        ctx.scan("application");
-        ctx.refresh();
-
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
+
+        System.out.println(app.startupMessage);
 
         Client client = ctx.getBean(Client.class);
         System.out.println("Client says: " + client.getGreeting());
@@ -58,6 +45,13 @@ public class App {
         ctx.close();
     }
 
+    public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers) {
+        super();
+        this.client = client;
+        this.defaultLogger = eventLogger;
+        this.loggers = loggers;
+    }
+
     private void logEvent(EventType eventType, Event event, String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
         event.setMsg(message);
@@ -70,4 +64,11 @@ public class App {
         logger.logEvent(event);
     }
 
+    public void setStartupMessage(String startupMessage) {
+        this.startupMessage = startupMessage;
+    }
+
+    public EventLogger getDefaultLogger() {
+        return defaultLogger;
+    }
 }

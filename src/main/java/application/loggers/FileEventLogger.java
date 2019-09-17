@@ -9,27 +9,20 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
-@Component
-public class FileEventLogger implements EventLogger {
+public class FileEventLogger extends AbstractLogger {
 
     private File file;
 
-    @Value("${events.file:target/events_log.txt}")
     private String filename;
-
-    public FileEventLogger() {
-    }
 
     public FileEventLogger(String filename) {
         this.filename = filename;
     }
 
-    @PostConstruct
     public void init() throws IOException {
         file = new File(filename);
         if (file.exists() && !file.canWrite()) {
-            throw new IllegalArgumentException(
-                    "Can't write to file " + filename);
+            throw new IllegalArgumentException("Can't write to file " + filename);
         } else if (!file.exists()) {
             file.createNewFile();
         }
