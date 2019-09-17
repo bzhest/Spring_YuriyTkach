@@ -5,6 +5,7 @@ import application.beans.Event;
 import application.beans.EventType;
 import application.loggers.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 import application.spring.AppConfig;
@@ -19,11 +20,18 @@ public class App {
     @Autowired
     private Client client;
 
-    @Resource(name = "defaultLogger")
+    @Value("#{T(application.beans.Event).isDay(8,17) ? "
+            + "cacheFileEventLogger : consoleEventLogger }")
     private EventLogger defaultLogger;
 
     @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
+
+    @Value("#{'Hello user ' + "
+            + "( systemProperties['os.name'].contains('Windows') ? "
+            + "systemEnvironment['USERNAME'] : systemEnvironment['USER'] ) + "
+            + "'. Default logger is ' + app.defaultLogger.name }")
+    private String startupMessage;
 
     public App() {
     }
@@ -68,6 +76,10 @@ public class App {
         }
 
         logger.logEvent(event);
+    }
+
+    public EventLogger getDefaultLogger() {
+        return defaultLogger;
     }
 
 }

@@ -3,6 +3,7 @@ import application.App;
 import application.beans.Client;
 import application.beans.Event;
 import application.beans.EventType;
+import application.loggers.AbstractLogger;
 import application.loggers.EventLogger;
 import org.junit.Test;
 
@@ -85,7 +86,7 @@ public class TestApp {
     }
 
     private void invokeLogEvent(App app, EventType type, Event event,
-            String message) throws NoSuchMethodException,
+                                String message) throws NoSuchMethodException,
             IllegalAccessException, InvocationTargetException {
         Method method = app.getClass().getDeclaredMethod("logEvent",
                 EventType.class, Event.class, String.class);
@@ -93,7 +94,7 @@ public class TestApp {
         method.invoke(app, type, event, message);
     }
 
-    private class DummyLogger implements EventLogger {
+    private class DummyLogger extends AbstractLogger {
 
         private Event event;
 
@@ -110,6 +111,10 @@ public class TestApp {
             this.event = event;
         }
 
-    };
+        @Override
+        protected void setName(String name) {
+            this.name = name;
+        }
 
+    };
 }
